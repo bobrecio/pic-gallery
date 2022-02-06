@@ -24,7 +24,7 @@ exports.getAllFiles = (dirPath, arrayOfFiles) => {
 
   files.forEach(function (file) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
+      arrayOfFiles = exports.getAllFiles(dirPath + "/" + file, arrayOfFiles);
     } else {
       arrayOfFiles.push(path.join(__dirname, dirPath, "/", file));
     }

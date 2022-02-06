@@ -1,5 +1,5 @@
 var http = require('http');
-var filelist = require('./modules/geFilesArray');
+var filelist = require('./modules/getFilesArray');
 
 console.log(filelist.getAllFiles("./"));
 
