@@ -1,4 +1,5 @@
-const picArray = ["pets1.webp","pets3.webp","pets4.webp","pets5.webp","pets6.webp"];
+// for f in *.webp; do  echo \"$f\", >> files.txt; done
+const filelist = require('./modules/geFilesArray');
 const gallery = document.getElementById('gallery');
 const pictureContainer = document.getElementById('pictureContainer');
 const thumbsContainer = document.getElementById('thumbsContainer');
@@ -10,6 +11,7 @@ function openModal() {
 }
 
 function closeModal() {
+    ``
     document.getElementById("myModal").style.display = "none";
 }
 var slideIndex = 1;
@@ -45,7 +47,9 @@ function showSlides(n) {
     captionText.innerHTML = dots[slideIndex - 1].alt;
 }
 
-function setUpGallery(){
+function setUpGallery() {
+    //const picArray = ["pets1.webp","pets3.webp","pets4.webp","pets5.webp","pets6.webp"];
+    let picArray = filelist.getDirFilesByExt("images", ".webp");
     for (let i = 0; i < picArray.length; i++) {
         // <div class="mySlides">
         //     <div class="numbertext">1 / 4</div>
@@ -64,11 +68,7 @@ function setUpGallery(){
         mySlides.appendChild(numberText);
         mySlides.appendChild(image);
 
-
-
-
         const thumb = document.createElement(div)
-        
     }
 
 }
