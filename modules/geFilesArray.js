@@ -1,4 +1,4 @@
-exports.getDirFilesByExt = (thisDir, _byExt) => {
+const getDirFilesByExt = (thisDir, _byExt) => {
   console.log(_byExt);
 
   const fs = require("fs");
@@ -15,7 +15,7 @@ exports.getDirFilesByExt = (thisDir, _byExt) => {
   }
 }
 
-exports.getAllFiles = (dirPath, arrayOfFiles) => {
+const getAllFiles = (dirPath, arrayOfFiles) => {
   const fs = require("fs");
   const path = require("path");
   files = fs.readdirSync(dirPath);

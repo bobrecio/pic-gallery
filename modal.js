@@ -1,31 +1,31 @@
 // for f in *.webp; do  echo \"$f\", >> files.txt; done
-const filelist = require('./modules/geFilesArray');
+//const filelist = require('./modules/geFilesArray');
 const gallery = document.getElementById('gallery');
 const pictureContainer = document.getElementById('pictureContainer');
 const thumbsContainer = document.getElementById('thumbsContainer');
 
 setUpGallery;
 
-function openModal() {
+const openModal = () => {
     document.getElementById("myModal").style.display = "block";
 }
 
-function closeModal() {
+const closeModal = () => {
     ``
     document.getElementById("myModal").style.display = "none";
 }
-var slideIndex = 1;
+let slideIndex = 1;
 showSlides(slideIndex);
 
-function plusSlides(n) {
+const plusSlides = (n) => {
     showSlides(slideIndex += n);
 }
 
-function currentSlide(n) {
+const currentSlide = (n) => {
     showSlides(slideIndex = n);
 }
 
-function showSlides(n) {
+const showSlides = (n) => {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");
@@ -47,9 +47,9 @@ function showSlides(n) {
     captionText.innerHTML = dots[slideIndex - 1].alt;
 }
 
-function setUpGallery() {
+const setUpGallery = () => {
     //const picArray = ["pets1.webp","pets3.webp","pets4.webp","pets5.webp","pets6.webp"];
-    let picArray = filelist.getDirFilesByExt("images", ".webp");
+    let picArray = getDirFilesByExt("images", ".webp");
     for (let i = 0; i < picArray.length; i++) {
         // <div class="mySlides">
         //     <div class="numbertext">1 / 4</div>
@@ -72,3 +72,38 @@ function setUpGallery() {
     }
 
 }
+
+const getDirFilesByExt = (thisDir, _byExt) => {
+    console.log(_byExt);
+  
+    const fs = require("fs");
+    let extFiles = [];
+  
+    try {
+      const arrayOfFiles = fs.readdirSync(thisDir);
+      extFiles = arrayOfFiles.filter(function(val,idx){
+        return val.indexOf(_byExt) >= 0;
+      })
+      return extFiles;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  
+  const getAllFiles = (dirPath, arrayOfFiles) => {
+    const fs = require("fs");
+    const path = require("path");
+    files = fs.readdirSync(dirPath);
+  
+    arrayOfFiles = arrayOfFiles || [];
+  
+    files.forEach(function (file) {
+      if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+        arrayOfFiles = exports.getAllFiles(dirPath + "/" + file, arrayOfFiles);
+      } else {
+        arrayOfFiles.push(path.join(__dirname, dirPath, "/", file));
+      }
+    });
+  
+    return arrayOfFiles;
+  }
