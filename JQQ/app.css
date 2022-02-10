@@ -90,7 +90,12 @@ body {
 }
 
 .mySlides {
-  display: none;
+  /* display: none; */
+}
+
+#numbertext{
+  color:white;
+  /* font-weight: 600; */
 }
 
 .cursor {
