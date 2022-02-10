@@ -7,12 +7,12 @@ const selectedIndex = null;
 
 imageIndexes.forEach((v,i) => {
   const image = document.createElement('img');
-  image.src = `/images/Pets (${v}).jpg`;
+  image.src = `./images/pets${v}.webp`;
   image.alt = `Pet picture ${v}`;
   image.classList.add('galleryImg');
   image.classList.add('mySlides');
   image.addEventListener('click', () => {
-    selectedImage.src = `/images/pets${v}.webp`;
+    selectedImage.src = `./images/pets${v}.webp`;
     popup.style.transform = `translateY(0)`;
   });
   gallery.appendChild(image);

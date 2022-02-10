@@ -1,5 +1,0 @@
-"pets1.webp",
-"pets3.webp",
-"pets4.webp",
-"pets5.webp",
-"pets6.webp",
