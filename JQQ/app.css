@@ -103,8 +103,8 @@ body {
 }
 
 /* Next & previous buttons */
-.prev,
-.next {
+#btnPrev,
+#btnNext {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -121,20 +121,20 @@ body {
 }
 
 /* Position the "next button" to the right */
-.next {
+#btnNext {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
+#btnPrev:hover,
+#btnNext:hover {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 50px;
 }
 
 /* Number text (1/3 etc) */
-.numbertext {
+#numbertext {
   color: #f2f2f2;
   font-size: 12px;
   padding: 8px 12px;
