@@ -7,24 +7,24 @@ const btnPrev = document.getElementById("btnPrev");
 const btnNext = document.getElementById("btnNext");
 const pathTitle = document.getElementById("pathTitle");
 
-const imageList = [1, 3, 4, 5, 6];
+const imageList = galleryImages;
 const selectedIndex = null;
 
-pathTitle.textContent = "images";
+pathTitle.textContent = galleryNav;
 
-// imageList.forEach((v, i) => {
-//   const image = document.createElement('img');
-//   image.src = `./images/pets${v}.webp`;
-//   image.alt = `Pet picture ${v}`;
-//   image.classList.add('galleryImg');
+imageList.forEach((v, i) => {
+  const image = document.createElement('img');
+  image.src = `./images/pets${v}.webp`;
+  image.alt = `Pet picture ${v}`;
+  image.classList.add('galleryImg');
 
-//   image.addEventListener('click', () => {
-//     selectedImage.src = `./images/pets${v}.webp`;
-//     slideNumber.innerText = `${i+1}/${imageList.length}`;
-//     popup.style.transform = `translateY(0)`;
-//   });
-//   gallery.appendChild(image);
-// })
+  image.addEventListener('click', () => {
+    selectedImage.src = `./images/pets${v}.webp`;
+    slideNumber.innerText = `${i+1}/${imageList.length}`;
+    popup.style.transform = `translateY(0)`;
+  });
+  gallery.appendChild(image);
+})
 
 btnPrev.addEventListener('click', () => {
   let thisSlide = slideNumber.innerText.split("/")[0];

@@ -17,28 +17,36 @@
 
     $galleryImages = "[]";
     $galleryDirs = "[]";
+    $galleryNav = "";
 
     foreach ($files as $file) {
         $path = $dir . "/" . $file;
+        $galleryNav = $path;
+
         if (is_file($path) && (strtolower(substr($path, -3)) == 'png' || strtolower(substr($path, -3)) == 'jpg' || strtolower(substr($path, -4)) == 'webp' || strtolower(substr($path, -4)) == 'jpeg')) {
-            $addNewFile = "," . $file . "]";
-            $galleryImages = str_replace("]", $addNewFile, $galleryImages);
+            $galleryImagesIsEmpty = ($galleryImages != "[]") ? false : true;
+            $comma = $galleryImagesIsEmpty ? "" : ",";
+            $addNewFile = $comma."'".$file."']";
+            $galleryImages = substr_replace($galleryImages, $addNewFile, -1);
         } elseif (is_dir($path) && $file != "." && $file != "..") {
-            $addNewDir = "," . $path . "]";
-            $galleryDir = str_Replace("]", $addNewDir, $galleryDirs);
-        } elseif ($file == "..") {
-            $strLine = "";
-            $strLine = $strLine . '<a href="./index.php?loc=' . dirname(dirname($path)) . '" ';
-            $strLine = $strLine . ' target="_self">';
-            $strLine = $strLine . '<h1>' . '[/' . dirname(dirname($path)) . ']' . str_replace("./", " ", $_GET["loc"]) . '</h1>';
-            $strLine = $strLine . '</a>';
-            echo $strLine;
-        }
+            $galleryDirsIsEmpty = ($galleryDirs != "[]") ? false : true;
+            $comma = $galleryDirsIsEmpty ? "" : ",";
+            $addNewFile = $comma."'".$file."']";
+            $galleryDirs = substr_replace($galleryDirs, $addNewFile, -1);
+        } // elseif ($file == "..") {
+        //     $strLine = "";
+        //     $strLine = $strLine . '<a href="./index.php?loc=' . dirname(dirname($path)) . '" ';
+        //     $strLine = $strLine . ' target="_self">';
+        //     $strLine = $strLine . '<h1>' . '[/' . dirname(dirname($path)) . ']' . str_replace("./", " ", $_GET["loc"]) . '</h1>';
+        //     $strLine = $strLine . '</a>';
+        //     echo $strLine;
+        // }
     }
-    echo '<script>';
-    echo 'let galleryImages = ' . $galleryImages . ";\n";
-    echo 'let galleryDirs = ' . $galleryDirs . ";\n";
-    echo '</script>'
+    echo "<script>";
+    echo "\nlet galleryImages = " . $galleryImages . "; ";
+    echo "\nlet galleryDirs = " . $galleryDirs . "; ";
+    echo "\nlet galleryNav = '" . $_GET["loc"] . "/'; ";
+    echo "\n</script>";
     ?>
     <div class="container">
         <h1 id="pathTitle">Image Gallery</h1>
