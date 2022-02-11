@@ -13,6 +13,8 @@
     <?php
     $place = strtolower(empty($_GET["loc"])) ? "." : ($_GET["loc"]);
     $dir = strtolower(empty($_GET["loc"])) ? "." : ($_GET["loc"]);
+    //$place = "./images";
+    //$dir = "./images";
     $files = scandir($dir);
 
     $galleryImages = "[]";
@@ -21,7 +23,7 @@
 
     foreach ($files as $file) {
         $path = $dir . "/" . $file;
-        $galleryNav = $path;
+        $galleryNav = dirname($path);
 
         if (is_file($path) && (strtolower(substr($path, -3)) == 'png' || strtolower(substr($path, -3)) == 'jpg' || strtolower(substr($path, -4)) == 'webp' || strtolower(substr($path, -4)) == 'jpeg')) {
             $galleryImagesIsEmpty = ($galleryImages != "[]") ? false : true;
@@ -45,11 +47,14 @@
     echo "<script>";
     echo "\nlet galleryImages = " . $galleryImages . "; ";
     echo "\nlet galleryDirs = " . $galleryDirs . "; ";
-    echo "\nlet galleryNav = '" . $_GET["loc"] . "/'; ";
+    echo "\nlet galleryNav = '" . $galleryNav . "'; ";
+    echo "\nlet galleryParent = '" . dirname($galleryNav) . "'; ";
     echo "\n</script>";
     ?>
     <div class="container">
-        <h1 id="pathTitle">Image Gallery</h1>
+        <a id='gotoParent'>&nbsp;&lArr;&nbsp;</a>
+        <h1 id="pathTitle"></h1>
+        <div id='subFolders'></div>
         <div id="gallery"></div>
     </div>
     <div id="popup">

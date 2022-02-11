@@ -94,11 +94,6 @@ body {
   /* display: none; */
 }
 
-#numbertext{
-  color:white;
-  /* font-weight: 600; */
-}
-
 .cursor {
   cursor: pointer;
 }
@@ -148,4 +143,15 @@ body {
   background-color: black;
   padding: 2px 16px;
   color: white;
+}
+
+#gotoParent{
+  color:#222;
+  text-decoration: none;
+  background-color: silver;
+  font-size: 2em;
+  border-radius: 25px;
+  font-weight: 600;
+  padding-right: 10px;
+
 }
