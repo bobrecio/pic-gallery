@@ -63,12 +63,12 @@
         <div class="modal-content">
             <span class="close cursor" onclick="closeModal()">&times;</span>
             <div id="slideNumber"></div>
+            <a id="btnPrev" onclick="updatePic(-1)">&#10094;</a>
             <img id="selectedImage" src="" alt="">
+            <a id="btnNext" onclick="updatePic(+1)">&#10095;</a>
 
             <div class="caption-container">
-                <a id="btnPrev" onclick="updatePic(-1)">&#10094;</a>
                 <a id="caption" class='cursor'></a>
-                <a id="btnNext" onclick="updatePic(+1)">&#10095;</a>
             </div>
         </div>
     </div>
