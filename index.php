@@ -28,12 +28,12 @@
         if (is_file($path) && (strtolower(substr($path, -3)) == 'png' || strtolower(substr($path, -3)) == 'jpg' || strtolower(substr($path, -4)) == 'webp' || strtolower(substr($path, -4)) == 'jpeg')) {
             $galleryImagesIsEmpty = ($galleryImages != "[]") ? false : true;
             $comma = $galleryImagesIsEmpty ? "" : ",";
-            $addNewFile = $comma."'".$file."']";
+            $addNewFile = $comma . "'" . $file . "']";
             $galleryImages = substr_replace($galleryImages, $addNewFile, -1);
         } elseif (is_dir($path) && $file != "." && $file != "..") {
             $galleryDirsIsEmpty = ($galleryDirs != "[]") ? false : true;
             $comma = $galleryDirsIsEmpty ? "" : ",";
-            $addNewFile = $comma."'".$file."']";
+            $addNewFile = $comma . "'" . $file . "']";
             $galleryDirs = substr_replace($galleryDirs, $addNewFile, -1);
         } // elseif ($file == "..") {
         //     $strLine = "";
@@ -51,21 +51,24 @@
     echo "\nlet galleryParent = '" . dirname($galleryNav) . "'; ";
     echo "\n</script>";
     ?>
-    <div class="container">
-        <a id='gotoParent'>&nbsp;&lArr;&nbsp;</a>
-        <h1 id="pathTitle"></h1>
-        <div id='subFolders'></div>
+    <div id="header">
+        <a id='gotoParent'>&nbsp;&lArr;&nbsp;back to&nbsp;</a>
+        <div id='pathTitle'></div>
+        <div id='subFolder-container'></div>
+    </div>
+    <div class='container'>
         <div id="gallery"></div>
     </div>
     <div id="popup">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <a id="btnPrev">&#10094;</a>
-            <div id="numbertext"></div>
-            <img src="" alt="" id="selectedImage">
-            <a id="btnNext">&#10095;</a>
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+            <div id="slideNumber"></div>
+            <img id="selectedImage" src="" alt="">
+
             <div class="caption-container">
-                <p id="caption"></p>
+                <a id="btnPrev" onclick="updatePic(-1)">&#10094;</a>
+                <a id="caption" class='cursor'></a>
+                <a id="btnNext" onclick="updatePic(+1)">&#10095;</a>
             </div>
         </div>
     </div>
